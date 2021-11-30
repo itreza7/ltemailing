@@ -1,0 +1,30 @@
+{
+    "name": "larateam/laravel-emailing",
+    "description": "Perfect Laravel email tools for development projects",
+    "minimum-stability": "stable",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "larateamnet",
+            "email": "larateamnet@gmaiil.com"
+        }
+    ],
+    "require": {
+        "php": "^7.3|^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Larateam\\Emailing\\": "app/"
+        },
+        "files": [
+            "helpers/helper.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Larateam\\Emailing\\Providers\\AppServiceProvider"
+            ]
+        }
+    }
+}
