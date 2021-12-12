@@ -1,10 +1,12 @@
-@component($template.'.message',['template' => $template, 'direction' => $direction])
+@component($template.'.message',['template' => $template, 'direction' => $direction, ])
 @isset ($greeting)
 # {{ $greeting }}
 @endif
 
 @foreach ($introLines ?? [] as $line)
-{{ $line }}
+@component($template.'.line')
+{!! $line !!}
+@endcomponent
 @endforeach
 
 @foreach ($actions ?? [] as $action)
@@ -16,11 +18,13 @@
 @endforeach
 
 @foreach ($outroLines ?? [] as $line)
-{{ $line }}
+@component($template.'.line')
+{!! $line !!}
+@endcomponent
 @endforeach
 
 @foreach ($actions ?? [] as $action)
-@isset($action['text'], $action['url'])
+@if(($action['footer-url'] ?? true) && isset($action['text'], $action['url']))
 @component($template.'.subcopy')
 {!! __('ltmailing::x.invalid_url', ['text' => $action['text'], 'link' => $action['url']]) !!}
 @endcomponent

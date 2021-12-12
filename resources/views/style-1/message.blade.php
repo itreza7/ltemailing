@@ -2,7 +2,7 @@
 
 @slot('header')
 @component($template.'.header', ['url' => url('')])
-{!! config('mail.header-logo')[__('ltmailing::x.lang')] !!}
+{!! __('ltmailing::x.header-logo') !!}
 @endcomponent
 @endslot
 
@@ -18,7 +18,7 @@
 
 @slot('footer')
 @component($template.'.footer')
-{!! __('ltmailing::x.copyright', ['site_title' => config('mail.site-title')[__('ltmailing::x.lang')]]) !!}
+{!! __('ltmailing::x.copyright', ['site_title' => __('ltmailing::x.site-title')]) !!}
 @endcomponent
 @endslot
 

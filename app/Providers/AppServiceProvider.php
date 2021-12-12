@@ -11,9 +11,13 @@ class AppServiceProvider extends ServiceProvider
 
     public function register()
     {
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                self::MAILING_DIR . 'resources/lang' => resource_path('lang/vendor/ltmailing'),
+            ], 'languages');
+        }
         $this->loadTranslationsFrom(self::MAILING_DIR . 'resources/lang', 'ltmailing');
         $this->loadViewsFrom(self::MAILING_DIR . 'resources/views', 'ltmailing');
-        $this->mergeConfigFrom(self::MAILING_DIR . 'config/mail.php', 'mail');
     }
 
 }

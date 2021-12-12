@@ -2,8 +2,7 @@
 
 namespace Larateam\Mailing\Facades;
 
-use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Support\Facades\Mail;
+use Larateam\Mailing\Mails\LTMailable;
 use Larateam\Mailing\Mails\StyleMail;
 use Larateam\Mailing\Mails\StyleMailShouldQueue;
 
@@ -20,62 +19,50 @@ class LTMail
         return $this;
     }
 
-    public function greeting($string): LTMail
+    public function greeting($greeting): LTMail
     {
-        $this->attributes['greeting'] = $string;
+        $this->attributes['greeting'] = $greeting;
         return $this;
     }
 
-    public function line($string): LTMail
+    public function line($line): LTMail
     {
         if(isset($this->attributes['actions'])){
-            $this->attributes['outroLines'][] = $string;
+            $this->attributes['outroLines'][] = $line;
         }
         else{
-            $this->attributes['introLines'][] = $string;
+            $this->attributes['introLines'][] = $line;
         }
         return $this;
     }
 
-    public function action($text, $url, $color = 'primary'): LTMail
+    public function action($text, $url, $color = 'primary', $add_to_footer = true): LTMail
     {
         $this->attributes['actions'][] = [
             'text' => $text,
             'url' => $url,
             'color' => $color,
+            'footer-url' => $add_to_footer
         ];
         return $this;
     }
 
-    public function render(): LTMail
+    public function template($template): LTMail
     {
-        if($this->is_queue){
-            $this->rendered = (new StyleMailShouldQueue($this->attributes));
-        }
-        else{
-            $this->rendered = (new StyleMail($this->attributes));
-        }
+        $this->attributes['template'] = $template;
         return $this;
     }
 
-    public function show(){
-        if(is_null($this->rendered)){
-            $this->render();
-        }
-        return $this->rendered;
-    }
-
-    public function send(): bool
+    public function render() : LTMailable
     {
-        if(is_null($this->rendered)){
-            $this->render();
+        if($this->is_queue){
+            $rendered = (new StyleMailShouldQueue($this->attributes));
         }
-        try {
-            Mail::send($this->rendered);
-            return true;
-        }catch (\Exception $exception){
+        else{
+            $rendered = (new StyleMail($this->attributes));
         }
-        return false;
+
+        return $rendered;
     }
 
 }

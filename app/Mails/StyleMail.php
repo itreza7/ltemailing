@@ -3,13 +3,11 @@
 namespace Larateam\Mailing\Mails;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\HtmlString;
 use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
 
-class StyleMail extends Mailable
+class StyleMail extends LTMailable
 {
     use Queueable, SerializesModels;
 
@@ -31,7 +29,7 @@ class StyleMail extends Mailable
     public function build()
     {
         $data = $this->data;
-        $template = $data['template'] ?? config('mail.lt-mailing-theme', 'style-1');
+        $template = $data['template'] ?? 'style-1';
         $data['template'] = 'ltmailing::' . $template;
         $data['direction'] = __('ltmailing::x.dir');
         $html_contents = view('ltmailing::email', $data)->render();
