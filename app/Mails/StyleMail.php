@@ -6,25 +6,31 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\App;
+use Illuminate\Support\HtmlString;
+use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
 
 class StyleMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $mail_template;
     public $mail_subject;
-    public $mail_content;
+    public $mail_data;
 
-    public function __construct($template, $subject, $content)
+    public function __construct($subject, $data)
     {
-        list($this->mail_template, $this->subject, $this->mail_content) = [$template, $subject, $content];
+        list($this->subject, $this->mail_data) = [$subject, $data];
+        list($this->subject, $this->mail_data) = [$subject, $data];
     }
 
     public function build()
     {
-        list($template, $subject, $content) = [$this->mail_template, $this->mail_subject, $this->mail_content];
-        $template = 'ltmailing::' . $template;
-        return $this->markdown($template);
+        list($subject, $mail_data) = [$this->mail_subject, $this->mail_data];
+        $template = $mail_data['template'] ?? config('mail.lt-mailing-theme', 'style-1');
+        $mail_data['template'] = 'ltmailing::' . $template;
+        $mail_data['direction'] = __('ltmailing::x.dir');
+        $html_contents = view('ltmailing::email', $mail_data)->render();
+        $css_contents = file_get_contents(__DIR__ . '/../../resources/views/' . $template . '/style.css');
+        $html_inlined = (new HtmlString((new CssToInlineStyles)->convert($html_contents, $css_contents)))->toHtml();
+        return $this->html($html_inlined)->subject($subject);
     }
 }
