@@ -58,6 +58,13 @@ class LTMail
         return $this;
     }
 
+    public function show(){
+        if(is_null($this->rendered)){
+            $this->render();
+        }
+        return $this->rendered;
+    }
+
     public function send(): bool
     {
         if(is_null($this->rendered)){
