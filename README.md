@@ -40,7 +40,7 @@ Illuminate\Mail\Mailable
 ```php
 render()
 ```
-Of course, the following a method for sending emails have also been added to the mentioned class.
+Of course, a method for sending emails have also been added to the mentioned class.
 ```php
 confirm()
 ```
