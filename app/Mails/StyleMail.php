@@ -13,18 +13,15 @@ class StyleMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $mail_subject;
-    public $mail_data;
+    public $data;
 
     /**
-     * @param $subject
      * @param $data
      */
 
-    public function __construct($subject, $data)
+    public function __construct($data)
     {
-        list($this->subject, $this->mail_data) = [$subject, $data];
-        list($this->subject, $this->mail_data) = [$subject, $data];
+        $this->data = $data;
     }
 
     /**
@@ -33,13 +30,13 @@ class StyleMail extends Mailable
 
     public function build()
     {
-        list($subject, $mail_data) = [$this->mail_subject, $this->mail_data];
-        $template = $mail_data['template'] ?? config('mail.lt-mailing-theme', 'style-1');
-        $mail_data['template'] = 'ltmailing::' . $template;
-        $mail_data['direction'] = __('ltmailing::x.dir');
-        $html_contents = view('ltmailing::email', $mail_data)->render();
+        $data = $this->data;
+        $template = $data['template'] ?? config('mail.lt-mailing-theme', 'style-1');
+        $data['template'] = 'ltmailing::' . $template;
+        $data['direction'] = __('ltmailing::x.dir');
+        $html_contents = view('ltmailing::email', $data)->render();
         $css_contents = file_get_contents(__DIR__ . '/../../resources/views/' . $template . '/style.css');
         $html_inlined = (new HtmlString((new CssToInlineStyles)->convert($html_contents, $css_contents)))->toHtml();
-        return $this->html($html_inlined)->subject($subject);
+        return $this->html($html_inlined);
     }
 }
