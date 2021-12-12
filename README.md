@@ -1,5 +1,13 @@
-# Larateam Mailing Assistant for laravel
-## How to install
+<p align="center">
+<img src="https://dl.larateam.net/EmailPackageEn.jpg" width="400">
+</p>
+<p align="center">
+<img src="https://dl.larateam.net/EmailPackageFa.jpg" width="400">
+</p>
+
+
+## Larateam Mailing Assistant for laravel
+### How to install
 - Run this command for adding to composer
 ```bash
 composer require itreza7/mailing
@@ -8,9 +16,9 @@ composer require itreza7/mailing
 ```bash
 php artisan vendor:publish --provider="Larateam\Mailing\Providers\AppServiceProvider"
 ```
-## Facade Methods
+### Facade Methods
 If you want this email to be transferred to the queue and sent using the cronjob, run this method
-```php
+```phps
 make_queue()
 ```
 This command adds a bold line to the beginning of the email, you can use it to greet and ....
@@ -40,7 +48,7 @@ Of course, a method for sending emails have also been added to the mentioned cla
 ```php
 confirm()
 ```
-## Example
+### Example
 ```php
 (new LTMail())->greeting('Reza')
     ->line('Hi')
