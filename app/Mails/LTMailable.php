@@ -7,10 +7,6 @@ use Illuminate\Support\Facades\Mail;
 
 class LTMailable extends Mailable
 {
-    public function show(): LTMailable
-    {
-        return $this;
-    }
 
     public function confirm(): bool
     {
