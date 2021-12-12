@@ -1,4 +1,4 @@
-# Larateam Mailing Assistant
+# Larateam Mailing Assistant for laravel
 ## How to install
 - Run this command for adding to composer
 ```bash
