@@ -6,17 +6,18 @@ php artisan vendor:publish --provider="Larateam\Mailing\Providers\AppServiceProv
 ```
 ## Example
 ```php
+$actionsArray =  [
+    [
+       'text' => $actionTitle,
+       'url' => $actionUrl,
+       'color' => $actionColor,
+    ],
+];
+ 
 Mail::send(new StyleMail($subject,[
     'greeting' => $greetingMessage,
     'introLines' => $introLinesArray,
     'actions' => $actionsArray,
-    // [
-    //   [
-    //       'text' => $actionTitle,
-    //       'url' => $actionUrl,
-    //       'color' => $actionColor,
-    //   ],
-    // ]
     'outroLines' => $outroLinesArray,
 ]));
 ```

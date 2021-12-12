@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     'header-logo' => [
         'en' => 'Larateam',
         'fa' => 'لاراتیم',
@@ -11,7 +10,5 @@ return [
         'en' => 'Larateam',
         'fa' => 'لاراتیم',
     ],
-
     'lt-mailing-theme' => 'style-1',
-
 ];
