@@ -29,10 +29,6 @@ Add this command to change the template. Template number 1 is set by default.
 ```php
 template($template)
 ```
-Add this command to change the template. Template number 1 is set by default.
-```php
-template($template)
-```
 You can use this command to render the email, this returns an object of following class 
 ```php
 \Larateam\Mailing\Mails\LTMailable extends \Illuminate\Mail\Mailable
