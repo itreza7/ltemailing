@@ -2,6 +2,7 @@
 
 namespace Larateam\Mailing\Facades;
 
+use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\Mail;
 use Larateam\Mailing\Mails\StyleMail;
 use Larateam\Mailing\Mails\StyleMailShouldQueue;
@@ -13,48 +14,36 @@ class LTMail
     public $rendered = null;
     public $is_queue = false;
 
-    public function __construct()
-    {
-
-    }
-
-    public function makeQueueable(): LTMail
+    public function make_queue(): LTMail
     {
         $this->is_queue = true;
         return $this;
     }
 
-    public function setSubject($string): LTMail
-    {
-        $this->attributes['subject'] = $string;
-        return $this;
-    }
-
-    public function setGreeting($string): LTMail
+    public function greeting($string): LTMail
     {
         $this->attributes['greeting'] = $string;
         return $this;
     }
 
-    public function addIntro($string): LTMail
+    public function line($string): LTMail
     {
-        $this->attributes['introLines'][] = $string;
+        if(isset($this->attributes['actions'])){
+            $this->attributes['outroLines'][] = $string;
+        }
+        else{
+            $this->attributes['introLines'][] = $string;
+        }
         return $this;
     }
 
-    public function addAction($text, $url, $color = 'primary'): LTMail
+    public function action($text, $url, $color = 'primary'): LTMail
     {
         $this->attributes['actions'][] = [
             'text' => $text,
             'url' => $url,
             'color' => $color,
         ];
-        return $this;
-    }
-
-    public function addOutro($string): LTMail
-    {
-        $this->attributes['outroLines'][] = $string;
         return $this;
     }
 
@@ -71,13 +60,13 @@ class LTMail
 
     public function send(): bool
     {
-        if(!is_null($this->rendered)){
-            try {
-                Mail::send($this->rendered);
-                return true;
-            }catch (\Exception $exception){
-
-            }
+        if(is_null($this->rendered)){
+            $this->render();
+        }
+        try {
+            Mail::send($this->rendered);
+            return true;
+        }catch (\Exception $exception){
         }
         return false;
     }
