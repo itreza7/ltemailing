@@ -10,5 +10,13 @@ php artisan vendor:publish --provider="Larateam\Mailing\Providers\AppServiceProv
 ```
 ## Example
 ```php
-
+(new LTMail())->greeting('Reza')
+    ->line('Hi')
+    ->action('Google', 'https://google.com', 'red')
+    ->line('Hi')
+    ->render()
+    ->to('itreza7@gmail.com')
+    ->subject('Hi Reza')
+    ->show()
+    ->confirm();
 ```

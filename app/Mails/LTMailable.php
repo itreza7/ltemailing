@@ -12,7 +12,7 @@ class LTMailable extends Mailable
         return $this;
     }
 
-    public function sendMail(): bool
+    public function confirm(): bool
     {
         try {
             Mail::send($this);
