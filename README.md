@@ -9,13 +9,14 @@ php artisan vendor:publish --provider="Larateam\Mailing\Providers\AppServiceProv
 Mail::send(new StyleMail($subject,[
     'greeting' => $greetingMessage,
     'introLines' => $introLinesArray,
-    'actions' => [
-        [
-            'text' => $actionTitle,
-            'url' => $actionUrl,
-            'color' => $actionColor,
-        ],
-    ],
+    'actions' => $actionsArray,
+    // [
+    //   [
+    //       'text' => $actionTitle,
+    //       'url' => $actionUrl,
+    //       'color' => $actionColor,
+    //   ],
+    // ]
     'outroLines' => $outroLinesArray,
 ]));
 ```
