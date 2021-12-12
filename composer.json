@@ -1,12 +1,12 @@
 {
-    "name": "larateam/laravel-emailing",
+    "name": "itreza7/ltemailing",
     "description": "Perfect Laravel email tools for development projects",
     "minimum-stability": "stable",
     "license": "proprietary",
     "authors": [
         {
-            "name": "larateamnet",
-            "email": "larateamnet@gmaiil.com"
+            "name": "itreza7",
+            "email": "itreza7@gmail.com"
         }
     ],
     "require": {
