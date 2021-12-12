@@ -1,7 +1,5 @@
 <p align="center">
 <img src="https://dl.larateam.net/EmailPackageEn.jpg" width="400">
-</p>
-<p align="center">
 <img src="https://dl.larateam.net/EmailPackageFa.jpg" width="400">
 </p>
 
