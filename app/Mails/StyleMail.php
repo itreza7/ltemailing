@@ -1,6 +1,6 @@
 <?php
 
-namespace Larateam\Emailing\Mails;
+namespace Larateam\Mailing\Mails;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

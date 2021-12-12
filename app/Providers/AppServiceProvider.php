@@ -1,6 +1,6 @@
 <?php
 
-namespace Larateam\Emailing\Providers;
+namespace Larateam\Mailing\Providers;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;

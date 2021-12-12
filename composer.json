@@ -1,5 +1,5 @@
 {
-    "name": "itreza7/ltmailing",
+    "name": "itreza7/mailing",
     "description": "Perfect Laravel email tools for development projects",
     "minimum-stability": "stable",
     "license": "GPL-3.0-or-later",
@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Larateam\\Emailing\\": "app/"
+            "Larateam\\Mailing\\": "app/"
         },
         "files": [
             "helpers/helper.php"
@@ -23,7 +23,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Larateam\\Emailing\\Providers\\AppServiceProvider"
+                "Larateam\\Mailing\\Providers\\AppServiceProvider"
             ]
         }
     }

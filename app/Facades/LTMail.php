@@ -1,10 +1,10 @@
 <?php
 
-namespace Larateam\Emailing\Facades;
+namespace Larateam\Mailing\Facades;
 
 use Illuminate\Support\Facades\Mail;
-use Larateam\Emailing\Mails\StyleMail;
-use Larateam\Emailing\Mails\StyleMailShouldQueue;
+use Larateam\Mailing\Mails\StyleMail;
+use Larateam\Mailing\Mails\StyleMailShouldQueue;
 
 class LTMail
 {
