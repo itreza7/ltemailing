@@ -1,6 +1,6 @@
 <?php
 
-namespace Larateam\Facades\Utilities;
+namespace Larateam\Emailing\Facades;
 
 use Illuminate\Support\Facades\Mail;
 use Larateam\Emailing\Mails\StyleMail;
