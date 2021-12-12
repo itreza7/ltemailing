@@ -16,11 +16,20 @@ class StyleMail extends Mailable
     public $mail_subject;
     public $mail_data;
 
+    /**
+     * @param $subject
+     * @param $data
+     */
+
     public function __construct($subject, $data)
     {
         list($this->subject, $this->mail_data) = [$subject, $data];
         list($this->subject, $this->mail_data) = [$subject, $data];
     }
+
+    /**
+     * @return StyleMail
+     */
 
     public function build()
     {
