@@ -55,6 +55,5 @@ confirm()
     ->render()
     ->to('itreza7@gmail.com')
     ->subject('Hi Reza')
-    ->show()
     ->confirm();
 ```
