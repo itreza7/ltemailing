@@ -15,10 +15,7 @@
     "autoload": {
         "psr-4": {
             "Larateam\\Mailing\\": "app/"
-        },
-        "files": [
-            "helpers/helper.php"
-        ]
+        }
     },
     "extra": {
         "laravel": {
